@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/public'));
 if (env === 'development') {
     mongoose.connect('mongodb://localhost/multivision');
 } else {
-    mongoose.connect('mongodb://root:toor@ds041238.mongolab.com:41238/heroku_app25952363');
+    mongoose.connect('mongodb://root:toor@ds033877.mongolab.com:33877/heroku_app26175662');
 }
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db connection error...'));

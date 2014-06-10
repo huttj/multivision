@@ -5,7 +5,8 @@ angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mv
     };
     $scope.signout = function() {
         mvAuth.logoutUser().then(function(msg) {
-            $scope.username = $scope.password = "";
+            $scope.username = "";
+            $scope.password = "";
             mvNotifier.success(msg);
             $location.path('/');
         });

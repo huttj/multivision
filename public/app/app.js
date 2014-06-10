@@ -1,6 +1,14 @@
 angular.module('app', ['ngResource', 'ngRoute']);
 
 angular.module('app').config(function($routeProvider, $locationProvider) {
+    var routeRoleCheck = function(role) {
+        return  {
+            auth: function(mvAuth) {
+                return mvAuth.authorizeCurrentUserForRoute(role);
+            }
+        }
+    };
+
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
@@ -10,15 +18,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         .when('/admin/users', {
             templateUrl: '/partials/admin/user-list',
             controller: 'mvUserListCtrl',
-            resolve: {
-                auth: function($q, mvIdentity) {
-                    if(mvIdentity.hasRole('admin')) {
-                        return true;
-                    } else {
-                        return $q.reject('user not authorized');
-                    }
-                }
-            }
+            resolve: routeRoleCheck('admin')
         })
 
 });

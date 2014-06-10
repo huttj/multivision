@@ -8,6 +8,9 @@ angular.module('app').factory('mvIdentity', function($window, mvUser) {
         currentUser: currentUser,
         isAuthenticated: function() {
             return !!this.currentUser;
+        },
+        hasRole: function(role) {
+            return this.isAuthenticated() && (this.currentUser.roles.indexOf(role) > -1);
         }
     };
 });
